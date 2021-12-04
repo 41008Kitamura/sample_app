@@ -31,5 +31,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "title", full_title("Contact")
     get signup_path
     assert_select "title", full_title("Sign up")
+    assert_match  @user.active_relationships.count.to_s, response.body
+    assert_match  @user.passive_relationships.count.to_s, response.body
   end
 end
